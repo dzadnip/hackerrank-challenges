@@ -17,6 +17,8 @@ namespace hack
             }
 
             int absoluteDifference = Math.Abs(sumOfDiagnal1 - sumOfDiagnal2);
+            
+            Console.WriteLine(absoluteDifference);
         }
 
         public static void Main(string[] args)
