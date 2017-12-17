@@ -2,63 +2,62 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
-namespace hackerrank_challenges
+class Solution
 {
-    class Program
+
+    static int[] Solve(int a0, int a1, int a2, int b0, int b1, int b2)
     {
-        static void Main(string[] args)
+        // Complete this function
+        int aPoints = 0;
+        int bPoints = 0;
+
+        if (a0 > b0)
         {
-			int[][] arr = new int[6][];
-            int largestSum = -100;
-            int calculateHourGlassSum = 0;
-            //int numberOfHourGlasses = 1;
+            aPoints++;
+        }
+        else if (b0 > a0)
+        {
+            bPoints++;
+        }
 
-			for (int arr_i = 0; arr_i < 6; arr_i++)
-			{
-				arr[arr_i] = Console.ReadLine()
-                                    .Split(' ')
-                                    .Select(n => Convert.ToInt32(n))
-                                    .ToArray();
-			}
+        if (a1 > b1)
+        {
+            aPoints++;
+        }
+        else if (b1 > a1)
+        {
+            bPoints++;
+        }
 
-            for (int i = 0; i < 4; i++)
-            {
-                int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0;
-                calculateHourGlassSum = 0;
+        if (a2 > b2)
+        {
+            aPoints++;
+        }
+        else if (b2 > a2)
+        {
+            bPoints++;
+        }
 
-                for (int j = 0; j < 4; j++)
-                {
-                    a = arr[j][i];
-                    b = arr[j][i + 1];
-                    c = arr[j][i + 2];
-                    d = arr[j + 1][i + 1];
-                    e = arr[j + 2][i];
-                    f = arr[j + 2][i + 1];
-                    g = arr[j + 2][i + 2];
+        int[] results = new int[] { aPoints, bPoints };
 
-                    calculateHourGlassSum = a + b + c + d + e + f + g;
+        return results;
+    }
 
-                    //Console.WriteLine("Hour glass: " + numberOfHourGlasses);
-                    //Console.WriteLine(a + " " + b + " " + c);
-                    //Console.WriteLine("  " + d + "  ");
-                    //Console.WriteLine(e + " " + f + " " + g);
-                    //Console.WriteLine("Sum: " + calculateHourGlassSum);
-                    //Console.WriteLine("");
+    static void Main(String[] args)
+    {
+        string[] tokens_a0 = Console.ReadLine().Split(' ');
+        int a0 = Convert.ToInt32(tokens_a0[0]);
+        int a1 = Convert.ToInt32(tokens_a0[1]);
+        int a2 = Convert.ToInt32(tokens_a0[2]);
+        string[] tokens_b0 = Console.ReadLine().Split(' ');
+        int b0 = Convert.ToInt32(tokens_b0[0]);
+        int b1 = Convert.ToInt32(tokens_b0[1]);
+        int b2 = Convert.ToInt32(tokens_b0[2]);
+        int[] result = Solve(a0, a1, a2, b0, b1, b2);
+        Console.WriteLine(String.Join(" ", result));
 
-                    //numberOfHourGlasses = numberOfHourGlasses + 1;
 
-					if (calculateHourGlassSum > largestSum)
-					{
-						largestSum = calculateHourGlassSum;
-					}
-
-					//Console.WriteLine("Largest sum: " + largestSum);
-					//Console.WriteLine("");
-                }
-            }
-
-			Console.WriteLine(largestSum);
-		}
     }
 }
+
+
