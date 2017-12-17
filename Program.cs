@@ -1,35 +1,36 @@
-using System;
+﻿using System;
 using System.Linq;
 
 namespace hack
 {
     class MainClass
     {
-        public static void DiagonalDifference(int n, int[][] a)
+        public static void PlusMinus (int n, int[] arr)
         {
-            int sumOfDiagnal1 = 0;
-            int sumOfDiagnal2 = 0;
+            int positives = 0;
+            int negatives = 0;
+            int zeros = 0;
 
-            for (int i = 0; i < n; i++)
-            {
-                sumOfDiagnal1 = sumOfDiagnal1 + a[i][i];
-                sumOfDiagnal2 = sumOfDiagnal2 + a[i][n - i - 1];
+            for (int i = 0; i < n; i++) {
+                if (arr[i] > 0) {
+                    positives++;
+                } else if (arr[i] < 0) {
+                    negatives++;
+                } else if (arr[i] == 0) {
+                    zeros++;
+                }
             }
 
-            int absoluteDifference = Math.Abs(sumOfDiagnal1 - sumOfDiagnal2);
-            
-            Console.WriteLine(absoluteDifference);
+            Console.WriteLine("{0:N5}", Decimal.Divide(Convert.ToDecimal(positives), Convert.ToDecimal(n)));
+            Console.WriteLine("{0:N5}", Decimal.Divide(Convert.ToDecimal(negatives), Convert.ToDecimal(n)));
+            Console.WriteLine("{0:N5}", Decimal.Divide(Convert.ToDecimal(zeros), Convert.ToDecimal(n)));
         }
 
         public static void Main(string[] args)
         {
             int n = Convert.ToInt32(Console.ReadLine());
-            int[][] a = new int[n][];
-            for (int a_i = 0; a_i < n; a_i++)
-            {
-                a[a_i] = Console.ReadLine().Split(' ').Select(s => Int32.Parse(s)).ToArray();
-            }
-            DiagonalDifference(n, a);
+            int[] arr = Console.ReadLine().Split(' ').Select(s => Int32.Parse(s)).ToArray();
+            PlusMinus(n, arr);
         }
     }
 }
