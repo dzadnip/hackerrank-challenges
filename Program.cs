@@ -1,36 +1,28 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-
-namespace hack
+class Solution
 {
-    class MainClass
-    {
-        public static void PlusMinus (int n, int[] arr)
-        {
-            int positives = 0;
-            int negatives = 0;
-            int zeros = 0;
-
-            for (int i = 0; i < n; i++) {
-                if (arr[i] > 0) {
-                    positives++;
-                } else if (arr[i] < 0) {
-                    negatives++;
-                } else if (arr[i] == 0) {
-                    zeros++;
-                }
+    public static void Staircase (int n, int level) {
+        if (n > 0) {
+            string display = "";
+            for (int i = 0; i < n - 1; i++)
+            {
+                display = display + " ";
             }
-
-            Console.WriteLine("{0:N5}", Decimal.Divide(Convert.ToDecimal(positives), Convert.ToDecimal(n)));
-            Console.WriteLine("{0:N5}", Decimal.Divide(Convert.ToDecimal(negatives), Convert.ToDecimal(n)));
-            Console.WriteLine("{0:N5}", Decimal.Divide(Convert.ToDecimal(zeros), Convert.ToDecimal(n)));
+            for (int j = 0; j < level; j++)
+            {
+                display = display + "#";
+            }
+            Console.WriteLine(display);
+            Staircase(n - 1, level + 1);
         }
+    }
 
-        public static void Main(string[] args)
-        {
-            int n = Convert.ToInt32(Console.ReadLine());
-            int[] arr = Console.ReadLine().Split(' ').Select(s => Int32.Parse(s)).ToArray();
-            PlusMinus(n, arr);
-        }
+    static void Main(String[] args)
+    {
+        int n = Convert.ToInt32(Console.ReadLine());
+        Staircase(n, 1);
     }
 }
