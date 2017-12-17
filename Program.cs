@@ -4,25 +4,29 @@ using System.IO;
 using System.Linq;
 class Solution
 {
-    public static void Staircase (int n, int level) {
-        if (n > 0) {
-            string display = "";
-            for (int i = 0; i < n - 1; i++)
-            {
-                display = display + " ";
+    public static void MiniMaxSum (long[] arr) {
+        long sum = arr.Sum();
+        Array.Sort(arr);
+        long minimum = sum;
+        long maximum = arr[0];
+
+        for (long i = 0; i < arr.Length; i++) {
+            long sumMinus = sum - Convert.ToInt64(arr[i]);
+
+            if (sumMinus < minimum) {
+                minimum = sumMinus;
             }
-            for (int j = 0; j < level; j++)
-            {
-                display = display + "#";
+            if (sumMinus > maximum) {
+                maximum = sumMinus;
             }
-            Console.WriteLine(display);
-            Staircase(n - 1, level + 1);
         }
+
+        Console.WriteLine("{0} {1}", minimum, maximum);
     }
 
     static void Main(String[] args)
     {
-        int n = Convert.ToInt32(Console.ReadLine());
-        Staircase(n, 1);
+        long[] arr = Console.ReadLine().Split(' ').Select(s => Int64.Parse(s)).ToArray();
+        MiniMaxSum(arr);
     }
 }
